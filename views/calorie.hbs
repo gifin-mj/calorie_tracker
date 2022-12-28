@@ -1,0 +1,51 @@
+<section style="margin: 8% 12%;">
+    <div class="container mt-4 mb-3">
+
+        {{#if calorie}}
+        <p class="text-center h1 fw-bold mb-3 mx-1 mx-md-4 mt-4">Edit Data</p>
+        <form action="/updatecalorie/{{#each calorie}}{{_id}}{{/each}}" method="post" >
+        {{else}}
+        <p class="text-center h1 fw-bold mb-3 mx-1 mx-md-4 mt-4">Add Data</p>
+        <form action="/calorie" method="post" >
+        {{/if}}
+            
+             <div class="form-group">
+
+                <input type="text" required class="form-control mt-3" value="{{#each calorie}}{{food}}{{/each}}" name="food" placeholder="Enter food Info" />
+             </div>
+              <div class="form-group">
+              <input type="text" hidden name="userid" required
+              value=
+                    {{#if user.id}}
+                        {{user.id}}
+                    {{else}}
+                        {{user._id}}
+                    {{/if}}
+
+                    />
+                    </div>
+             <div class="form-group">
+
+                <input type="number" required class="form-control mt-3" value="{{#each calorie}}{{quantity}}{{/each}}" name="quantity" placeholder="Enter Food quantity in grams" />
+             </div>
+
+             <div class="form-group">
+                <input type="number" required class="form-control mt-3" value="{{#each calorie}}{{calorie}}{{/each}}" name="calorie" placeholder="Enter calorie" />
+             </div>
+           
+             <div class="form-group">
+
+                <input type="date" required class="form-control mt-3"  name="caldate" value="{{#each calorie}}{{caldate}}{{/each}}"  />
+             </div>
+            
+             <div class="row">
+                {{#if calorie}}
+                <input type="submit" class="btn btn-secondary btn-lg btn-block mt-3 ml-auto"   value="Update Data" />
+                {{else}}
+                <input type="submit" class="btn btn-secondary btn-lg btn-block mt-3 ml-auto"   value="Add Data" />
+                {{/if}}
+            </div>
+        </form>
+
+    </div>
+</section>

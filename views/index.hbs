@@ -1,0 +1,50 @@
+<section >
+  <h1 style="text-align: center;">Calorie Tracker</h1><br>
+ {{#if user}}
+<a class="btn btn-warning mb-4" href="/calorie">Add Data</a>  
+{{/if}}
+<table id="table1" class="display mb-5" style="" >
+        <thead>
+            <tr><th>#</th>
+                <th>Food</th>
+                <th>Quantity</th>
+                <th>Calorie</th>
+                <th>Date</th>
+                <th>Options</th>
+            </tr>
+        </thead>    
+        <tbody>
+            {{#each calorie as |cal|}}
+            <tr>
+                <td>{{#add @index 1 }}{{/add}}</td>
+                <td>{{#each cal}}{{food}}{{/each}}</td>
+                <td>{{#each cal}}{{quantity}}{{/each}}</td>
+                <td>{{#each cal}}{{calorie}}{{/each}}</td>
+                <td>{{#each cal}}{{caldate}}{{/each}}</td>
+                <td>
+                    <a href="/editcal/{{#each cal}}{{_id}}{{/each}}">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                    </a>&emsp;
+                    <a href="/deletecal/{{#each cal}}{{_id}}{{/each}}"
+                    onClick="return confirm('Deleting {{#each cal}}{{food}}{{/each}} Are you sure? ')"
+                    >
+                            <i class="fa-solid fa-trash"></i>
+                            
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+       
+    </table>
+
+</section>
+
+<script>
+    $(document).ready(function () {
+        $('#table1').DataTable(
+            
+        );
+        
+    });
+</script>
